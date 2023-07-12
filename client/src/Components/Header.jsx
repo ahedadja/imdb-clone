@@ -1,39 +1,39 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import LocalMoviesOutlinedIcon from "@mui/icons-material/LocalMoviesOutlined";
-import Link from "@mui/material/Link";
-import TvOutlinedIcon from "@mui/icons-material/TvOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ListItemButton from "@mui/material/ListItemButton";
-import { ListItemIcon, ListItemText } from "@mui/material";
-import { Tooltip } from "@mui/material";
-import Fade from "@mui/material/Fade";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import Container from "@mui/material/Container";
-import Logo from "../Images/imdb-logo.png";
+import * as React from "react"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Toolbar from "@mui/material/Toolbar"
+import Drawer from "@mui/material/Drawer"
+import Button from "@mui/material/Button"
+import IconButton from "@mui/material/IconButton"
+import MenuIcon from "@mui/icons-material/Menu"
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined"
+import List from "@mui/material/List"
+import Divider from "@mui/material/Divider"
+import ListItem from "@mui/material/ListItem"
+import LocalMoviesOutlinedIcon from "@mui/icons-material/LocalMoviesOutlined"
+import Link from "@mui/material/Link"
+import TvOutlinedIcon from "@mui/icons-material/TvOutlined"
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined"
+import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined"
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
+import ListItemButton from "@mui/material/ListItemButton"
+import { ListItemIcon, ListItemText } from "@mui/material"
+import { Tooltip } from "@mui/material"
+import Fade from "@mui/material/Fade"
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
+import Container from "@mui/material/Container"
+import Logo from "../Images/imdb-logo.png"
 
 function Header() {
-  const [state, setState] = React.useState({ left: false });
+  const [state, setState] = React.useState({ left: false })
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-      return;
+      return
     }
 
-    setState({ ...state, [anchor]: open });
-  };
+    setState({ ...state, [anchor]: open })
+  }
 
   const list = (anchor) => (
     <Box
@@ -126,7 +126,7 @@ function Header() {
         <Divider />
       </List>
     </Box>
-  );
+  )
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -197,7 +197,7 @@ function Header() {
         </Container>
       </AppBar>
     </Box>
-  );
+  )
 }
 
-export default Header;
+export default Header

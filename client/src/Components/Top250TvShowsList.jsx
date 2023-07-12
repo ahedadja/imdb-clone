@@ -1,36 +1,36 @@
-import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
-import { styled } from "@mui/material/styles";
-import { IconButton, TextField, useMediaQuery } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import axios from "axios";
-import useSWR from "swr";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { useMemo } from "react";
-import Link from "@mui/material/Link";
-import StarIcon from "@mui/icons-material/Star";
-import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import Fade from "@mui/material/Fade";
-import ImdbCharts from "./ImdbCharts";
-import TopRatedTvShowsByGenre from "./TopRatedTvShowsByGenre";
+import React, { useState } from "react"
+import Paper from "@mui/material/Paper"
+import Divider from "@mui/material/Divider"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Unstable_Grid2"
+import { styled } from "@mui/material/styles"
+import { IconButton, TextField, useMediaQuery } from "@mui/material"
+import MenuItem from "@mui/material/MenuItem"
+import axios from "axios"
+import useSWR from "swr"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import { useMemo } from "react"
+import Link from "@mui/material/Link"
+import StarIcon from "@mui/icons-material/Star"
+import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined"
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined"
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined"
+import Tooltip from "@mui/material/Tooltip"
+import Fade from "@mui/material/Fade"
+import ImdbCharts from "./ImdbCharts"
+import TopRatedTvShowsByGenre from "./TopRatedTvShowsByGenre"
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: 0,
-}));
+}))
 
 const Top250TvShows = (props) => (
   <TableRow>
@@ -57,47 +57,47 @@ const Top250TvShows = (props) => (
       </IconButton>
     </TableCell>
   </TableRow>
-);
+)
 
 function Top250TvShowsList() {
-  const [sortField, setSortField] = React.useState("rk");
-  const [sortDirection, setSortDirection] = useState("ASC");
+  const [sortField, setSortField] = React.useState("rk")
+  const [sortDirection, setSortDirection] = useState("ASC")
 
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"))
 
-  const url = "http://localhost:8000/top250tvshows";
+  const url = "http://localhost:8000/top250tvshows"
 
-  const getTop250TvShows = (url) => axios.get(url).then((res) => res.data);
+  const getTop250TvShows = (url) => axios.get(url).then((res) => res.data)
 
-  const { data, error } = useSWR(url, getTop250TvShows);
+  const { data, error } = useSWR(url, getTop250TvShows)
 
   const listOfShows = useMemo(() => {
     if (!data) {
-      return undefined;
+      return undefined
     }
 
     //Can use [...data.items] or data.items.slice()
-    const sorted = data.items.slice();
+    const sorted = data.items.slice()
     if (sortField === "rk") {
-      sorted.sort((a, b) => a.rank - b.rank);
+      sorted.sort((a, b) => a.rank - b.rank)
     } else if (sortField === "ir") {
-      sorted.sort((a, b) => b.imDbRating - a.imDbRating);
+      sorted.sort((a, b) => b.imDbRating - a.imDbRating)
     } else if (sortField === "nor") {
-      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount);
+      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
     } else if (sortField === "rd") {
-      sorted.sort((a, b) => a.year.localeCompare(b.year));
+      sorted.sort((a, b) => a.year.localeCompare(b.year))
     }
 
     if (sortDirection === "DESC") {
-      sorted.reverse();
+      sorted.reverse()
     }
 
     return sorted.map((show) => {
-      return <Top250TvShows key={show.id} showList={show} />;
-    });
-  }, [data, sortField, sortDirection]);
+      return <Top250TvShows key={show.id} showList={show} />
+    })
+  }, [data, sortField, sortDirection])
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>
 
   return (
     <Box>
@@ -122,7 +122,7 @@ function Top250TvShowsList() {
                   <TextField
                     value={sortField}
                     onChange={(e) => {
-                      setSortField(e.target.value);
+                      setSortField(e.target.value)
                     }}
                     select
                     label="Sort by:"
@@ -142,8 +142,8 @@ function Top250TvShowsList() {
                     <IconButton
                       onClick={() => {
                         setSortDirection((old) => {
-                          return old === "ASC" ? "DESC" : "ASC";
-                        });
+                          return old === "ASC" ? "DESC" : "ASC"
+                        })
                       }}
                     >
                       {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -191,7 +191,7 @@ function Top250TvShowsList() {
                     <TextField
                       value={sortField}
                       onChange={(e) => {
-                        setSortField(e.target.value);
+                        setSortField(e.target.value)
                       }}
                       select
                       label="Sort by:"
@@ -211,8 +211,8 @@ function Top250TvShowsList() {
                       <IconButton
                         onClick={() => {
                           setSortDirection((old) => {
-                            return old === "ASC" ? "DESC" : "ASC";
-                          });
+                            return old === "ASC" ? "DESC" : "ASC"
+                          })
                         }}
                       >
                         {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -250,7 +250,7 @@ function Top250TvShowsList() {
         </Container>
       )}
     </Box>
-  );
+  )
 }
 
-export default Top250TvShowsList;
+export default Top250TvShowsList

@@ -1,35 +1,35 @@
-import React, { useState, useMemo } from "react";
-import Paper from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
-import { styled } from "@mui/material/styles";
-import { IconButton, TextField, useMediaQuery } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import axios from "axios";
-import useSWR from "swr";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Link from "@mui/material/Link";
-import StarIcon from "@mui/icons-material/Star";
-import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import Fade from "@mui/material/Fade";
-import ImdbCharts from "./ImdbCharts";
-import TopRatedMoviesByGenre from "./TopRatedMoviesByGenre";
+import React, { useState, useMemo } from "react"
+import Paper from "@mui/material/Paper"
+import Divider from "@mui/material/Divider"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Unstable_Grid2"
+import { styled } from "@mui/material/styles"
+import { IconButton, TextField, useMediaQuery } from "@mui/material"
+import MenuItem from "@mui/material/MenuItem"
+import axios from "axios"
+import useSWR from "swr"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import Link from "@mui/material/Link"
+import StarIcon from "@mui/icons-material/Star"
+import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined"
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined"
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined"
+import Tooltip from "@mui/material/Tooltip"
+import Fade from "@mui/material/Fade"
+import ImdbCharts from "./ImdbCharts"
+import TopRatedMoviesByGenre from "./TopRatedMoviesByGenre"
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: 0,
-}));
+}))
 
 const TopActionMovies = (props) => (
   <TableRow>
@@ -56,49 +56,49 @@ const TopActionMovies = (props) => (
       </IconButton>
     </TableCell>
   </TableRow>
-);
+)
 
 function TopActionMoviesList(props) {
-  const [sortField, setSortField] = React.useState("pop");
-  const [sortDirection, setSortDirection] = useState("ASC");
+  const [sortField, setSortField] = React.useState("pop")
+  const [sortDirection, setSortDirection] = useState("ASC")
 
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"))
 
-  const url = "http://localhost:8000/action";
+  const url = "http://localhost:8000/action"
 
-  const getTopActionMovies = (url) => axios.get(url).then((res) => res.data);
+  const getTopActionMovies = (url) => axios.get(url).then((res) => res.data)
 
-  const { data, error } = useSWR(url, getTopActionMovies);
+  const { data, error } = useSWR(url, getTopActionMovies)
 
   const listOfMovies = useMemo(() => {
     if (!data) {
-      return undefined;
+      return undefined
     }
 
     //Can use [...data.results] or data.results.slice()
-    const sorted = data.results.slice();
+    const sorted = data.results.slice()
 
     //Getting the title count dynamically from data
-    let titleCount = data.results.slice().length;
+    let titleCount = data.results.slice().length
 
-    document.getElementById("titles").innerHTML = titleCount;
+    document.getElementById("titles").innerHTML = titleCount
 
     if (sortField === "ir") {
-      sorted.sort((a, b) => b.imDbRating - a.imDbRating);
+      sorted.sort((a, b) => b.imDbRating - a.imDbRating)
     } else if (sortField === "nor") {
-      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount);
+      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
     }
 
     if (sortDirection === "DESC") {
-      sorted.reverse();
+      sorted.reverse()
     }
 
     return sorted.map((movie) => {
-      return <TopActionMovies key={movie.id} movieList={movie} />;
-    });
-  }, [data, sortField, sortDirection]);
+      return <TopActionMovies key={movie.id} movieList={movie} />
+    })
+  }, [data, sortField, sortDirection])
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>
 
   return (
     <Box>
@@ -123,7 +123,7 @@ function TopActionMoviesList(props) {
                   <TextField
                     value={sortField}
                     onChange={(e) => {
-                      setSortField(e.target.value);
+                      setSortField(e.target.value)
                     }}
                     select
                     label="Sort by:"
@@ -142,8 +142,8 @@ function TopActionMoviesList(props) {
                     <IconButton
                       onClick={() => {
                         setSortDirection((old) => {
-                          return old === "ASC" ? "DESC" : "ASC";
-                        });
+                          return old === "ASC" ? "DESC" : "ASC"
+                        })
                       }}
                     >
                       {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -191,7 +191,7 @@ function TopActionMoviesList(props) {
                     <TextField
                       value={sortField}
                       onChange={(e) => {
-                        setSortField(e.target.value);
+                        setSortField(e.target.value)
                       }}
                       select
                       label="Sort by:"
@@ -210,8 +210,8 @@ function TopActionMoviesList(props) {
                       <IconButton
                         onClick={() => {
                           setSortDirection((old) => {
-                            return old === "ASC" ? "DESC" : "ASC";
-                          });
+                            return old === "ASC" ? "DESC" : "ASC"
+                          })
                         }}
                       >
                         {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -249,7 +249,7 @@ function TopActionMoviesList(props) {
         </Container>
       )}
     </Box>
-  );
+  )
 }
 
-export default TopActionMoviesList;
+export default TopActionMoviesList

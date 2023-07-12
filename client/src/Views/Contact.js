@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "@mui/material";
-import ContactForm from "../Components/ContactForm";
-import { Box } from "@mui/material";
+import React from "react"
+import { Container } from "@mui/material"
+import ContactForm from "../Components/ContactForm"
+import { Box } from "@mui/material"
 
 function Contact() {
   return (
@@ -10,7 +10,7 @@ function Contact() {
         <ContactForm />
       </Box>
     </Container>
-  );
+  )
 }
 
-export default Contact;
+export default Contact
