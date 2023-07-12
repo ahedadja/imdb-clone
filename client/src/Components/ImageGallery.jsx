@@ -1,7 +1,7 @@
-import React from "react";
-import Carousel from "react-material-ui-carousel";
-import { Paper, Box } from "@mui/material";
-import Link from "@mui/material/Link";
+import React from "react"
+import Carousel from "react-material-ui-carousel"
+import { Paper, Box } from "@mui/material"
+import Link from "@mui/material/Link"
 
 function Item(props) {
   return (
@@ -22,7 +22,7 @@ function Item(props) {
         <p>{props.item.description}</p>
       </Box>
     </Paper>
-  );
+  )
 }
 
 function ImageGallery() {
@@ -41,7 +41,7 @@ function ImageGallery() {
         "https://m.media-amazon.com/images/M/MV5BMTM0NjUxMDk5MF5BMl5BanBnXkFtZTcwNDMxNDY3Mw@@._V1_Ratio1.5000_AL_.jpg",
       description: "The Shawshank Redemption",
     },
-  ];
+  ]
 
   return (
     <Carousel navButtonsAlwaysVisible sx={{ height: "544px", width: "843px" }} autoPlay={false}>
@@ -49,7 +49,7 @@ function ImageGallery() {
         <Item key={i} item={item} />
       ))}
     </Carousel>
-  );
+  )
 }
 
-export default ImageGallery;
+export default ImageGallery

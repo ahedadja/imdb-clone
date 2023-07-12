@@ -1,31 +1,31 @@
-import React from "react";
-import Paper from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
-import { styled } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
-import axios from "axios";
-import useSWR from "swr";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { useMemo } from "react";
-import Link from "@mui/material/Link";
-import ImdbCharts from "./ImdbCharts";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import IconButton from "@mui/material/IconButton";
-import CurrentWeekend from "./CurrentWeekend";
+import React from "react"
+import Paper from "@mui/material/Paper"
+import Divider from "@mui/material/Divider"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Unstable_Grid2"
+import { styled } from "@mui/material/styles"
+import { useMediaQuery } from "@mui/material"
+import axios from "axios"
+import useSWR from "swr"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import { useMemo } from "react"
+import Link from "@mui/material/Link"
+import ImdbCharts from "./ImdbCharts"
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined"
+import IconButton from "@mui/material/IconButton"
+import CurrentWeekend from "./CurrentWeekend"
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: 0,
-}));
+}))
 
 const BoxOffice = (props) => (
   <TableRow>
@@ -48,29 +48,27 @@ const BoxOffice = (props) => (
       </IconButton>
     </TableCell>
   </TableRow>
-);
+)
 
 function TopBoxOfficeList() {
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"))
 
-  const url = "http://localhost:8000/topboxoffice";
+  const url = "http://localhost:8000/topboxoffice"
 
-  const getBoxOffice = (url) => axios.get(url).then((res) => res.data);
+  const getBoxOffice = (url) => axios.get(url).then((res) => res.data)
 
-  const { data, error } = useSWR(url, getBoxOffice);
+  const { data, error } = useSWR(url, getBoxOffice)
 
   const listOfMovies = useMemo(() => {
     if (!data) {
-      return undefined;
+      return undefined
     }
-
-    //Can use [...data.items] or data.items.slice()
     return [...data.items].map((movie) => {
-      return <BoxOffice key={movie.id} movieList={movie} />;
-    });
-  }, [data]);
+      return <BoxOffice key={movie.id} movieList={movie} />
+    })
+  }, [data])
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>
 
   return (
     <Box>
@@ -145,7 +143,7 @@ function TopBoxOfficeList() {
         </Container>
       )}
     </Box>
-  );
+  )
 }
 
-export default TopBoxOfficeList;
+export default TopBoxOfficeList

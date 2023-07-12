@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardContent, TextField, Button, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
+import React from "react"
+import { Card, CardContent, TextField, Button, Typography } from "@mui/material"
+import Grid from "@mui/material/Grid"
+import { Container } from "@mui/material"
 
 function ContactForm() {
   return (
@@ -46,7 +46,7 @@ function ContactForm() {
         </CardContent>
       </Card>
     </Container>
-  );
+  )
 }
 
-export default ContactForm;
+export default ContactForm

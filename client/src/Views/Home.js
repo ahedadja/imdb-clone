@@ -1,15 +1,15 @@
-import * as React from "react";
-import { Container, Typography, Box, Stack } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import ImageGallery from "../Components/ImageGallery";
+import * as React from "react"
+import { Container, Typography, Box, Stack } from "@mui/material"
+import Paper from "@mui/material/Paper"
+import { styled } from "@mui/material/styles"
+import ImageGallery from "../Components/ImageGallery"
 
 const Item = styled(Paper)(({ theme }) => ({
   background: "black",
   padding: theme.spacing(1),
   borderRadius: 0,
   textAlign: "left",
-}));
+}))
 
 function Home() {
   return (
@@ -37,7 +37,7 @@ function Home() {
         </Box>
       </Container>
     </Box>
-  );
+  )
 }
 
-export default Home;
+export default Home

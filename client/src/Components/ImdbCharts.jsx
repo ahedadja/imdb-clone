@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "@mui/material/Link";
-import { List, ListItemText } from "@mui/material";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import React from "react"
+import Link from "@mui/material/Link"
+import { List, ListItemText } from "@mui/material"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 
 function ImdbCharts() {
   return (
@@ -26,7 +26,7 @@ function ImdbCharts() {
         </Link>
       </List>
     </Box>
-  );
+  )
 }
 
-export default ImdbCharts;
+export default ImdbCharts

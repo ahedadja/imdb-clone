@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
-import { styled } from "@mui/material/styles";
-import { IconButton, TextField, useMediaQuery } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import axios from "axios";
-import useSWR from "swr";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { useMemo } from "react";
-import Link from "@mui/material/Link";
-import StarIcon from "@mui/icons-material/Star";
-import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import Fade from "@mui/material/Fade";
-import ImdbCharts from "./ImdbCharts";
+import React, { useState } from "react"
+import Paper from "@mui/material/Paper"
+import Divider from "@mui/material/Divider"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Unstable_Grid2"
+import { styled } from "@mui/material/styles"
+import { IconButton, TextField, useMediaQuery } from "@mui/material"
+import MenuItem from "@mui/material/MenuItem"
+import axios from "axios"
+import useSWR from "swr"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import { useMemo } from "react"
+import Link from "@mui/material/Link"
+import StarIcon from "@mui/icons-material/Star"
+import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined"
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined"
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined"
+import Tooltip from "@mui/material/Tooltip"
+import Fade from "@mui/material/Fade"
+import ImdbCharts from "./ImdbCharts"
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: 0,
-}));
+}))
 
 const MostPopularMovies = (props) => (
   <TableRow>
@@ -56,47 +56,47 @@ const MostPopularMovies = (props) => (
       </IconButton>
     </TableCell>
   </TableRow>
-);
+)
 
 function MostPopularMoviesList() {
-  const [sortField, setSortField] = React.useState("rk");
-  const [sortDirection, setSortDirection] = useState("ASC");
+  const [sortField, setSortField] = React.useState("rk")
+  const [sortDirection, setSortDirection] = useState("ASC")
 
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"))
 
-  const url = "http://localhost:8000/mostpopularmovies";
+  const url = "http://localhost:8000/mostpopularmovies"
 
-  const getMostPopularMovies = (url) => axios.get(url).then((res) => res.data);
+  const getMostPopularMovies = (url) => axios.get(url).then((res) => res.data)
 
-  const { data, error } = useSWR(url, getMostPopularMovies);
+  const { data, error } = useSWR(url, getMostPopularMovies)
 
   const listOfMovies = useMemo(() => {
     if (!data) {
-      return undefined;
+      return undefined
     }
 
     //Can use [...data.items] or data.items.slice()
-    const sorted = data.items.slice();
+    const sorted = data.items.slice()
     if (sortField === "rk") {
-      sorted.sort((a, b) => a.rank - b.rank);
+      sorted.sort((a, b) => a.rank - b.rank)
     } else if (sortField === "ir") {
-      sorted.sort((a, b) => b.imDbRating - a.imDbRating);
+      sorted.sort((a, b) => b.imDbRating - a.imDbRating)
     } else if (sortField === "nor") {
-      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount);
+      sorted.sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
     } else if (sortField === "rd") {
-      sorted.sort((a, b) => a.year.localeCompare(b.year));
+      sorted.sort((a, b) => a.year.localeCompare(b.year))
     }
 
     if (sortDirection === "DESC") {
-      sorted.reverse();
+      sorted.reverse()
     }
 
     return sorted.map((movie) => {
-      return <MostPopularMovies key={movie.id} movieList={movie} />;
-    });
-  }, [data, sortField, sortDirection]);
+      return <MostPopularMovies key={movie.id} movieList={movie} />
+    })
+  }, [data, sortField, sortDirection])
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>
 
   return (
     <Box>
@@ -121,7 +121,7 @@ function MostPopularMoviesList() {
                   <TextField
                     value={sortField}
                     onChange={(e) => {
-                      setSortField(e.target.value);
+                      setSortField(e.target.value)
                     }}
                     select
                     label="Sort by:"
@@ -141,8 +141,8 @@ function MostPopularMoviesList() {
                     <IconButton
                       onClick={() => {
                         setSortDirection((old) => {
-                          return old === "ASC" ? "DESC" : "ASC";
-                        });
+                          return old === "ASC" ? "DESC" : "ASC"
+                        })
                       }}
                     >
                       {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -190,7 +190,7 @@ function MostPopularMoviesList() {
                     <TextField
                       value={sortField}
                       onChange={(e) => {
-                        setSortField(e.target.value);
+                        setSortField(e.target.value)
                       }}
                       select
                       label="Sort by:"
@@ -210,8 +210,8 @@ function MostPopularMoviesList() {
                       <IconButton
                         onClick={() => {
                           setSortDirection((old) => {
-                            return old === "ASC" ? "DESC" : "ASC";
-                          });
+                            return old === "ASC" ? "DESC" : "ASC"
+                          })
                         }}
                       >
                         {sortDirection === "ASC" ? <ArrowUpwardOutlinedIcon /> : <ArrowDownwardOutlinedIcon />}
@@ -246,7 +246,7 @@ function MostPopularMoviesList() {
         </Container>
       )}
     </Box>
-  );
+  )
 }
 
-export default MostPopularMoviesList;
+export default MostPopularMoviesList

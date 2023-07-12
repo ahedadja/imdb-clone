@@ -1,7 +1,7 @@
-import React from "react";
-import { Box } from "@mui/material";
-import { List, ListItemText, Link } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import React from "react"
+import { Box } from "@mui/material"
+import { List, ListItemText, Link } from "@mui/material"
+import Typography from "@mui/material/Typography"
 
 function TopRatedMoviesByGenre() {
   return (
@@ -73,7 +73,7 @@ function TopRatedMoviesByGenre() {
         </Link>
       </List>
     </Box>
-  );
+  )
 }
 
-export default TopRatedMoviesByGenre;
+export default TopRatedMoviesByGenre
