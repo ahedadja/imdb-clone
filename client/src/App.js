@@ -13,6 +13,7 @@ import MostPopularMovies from "./Views/MostPopularMovies"
 import MostPopularTvShows from "./Views/MostPopularTvShows"
 import TopBoxOffice from "./Views/TopBoxOffice"
 import TopActionMovies from "./Views/TopActionMovies"
+import Top10MoviesPage from "./Views/Top10MoviePage"
 
 const darkTheme = createTheme({
   palette: {
@@ -35,6 +36,7 @@ function App() {
           <Route path="mostpopulartvshows" element={<MostPopularTvShows />} />
           <Route path="topboxoffice" element={<TopBoxOffice />} />
           <Route path="action" element={<TopActionMovies />} />
+          <Route path="top10movies" element={<Top10MoviesPage />} />
         </Routes>
       </Box>
     </ThemeProvider>

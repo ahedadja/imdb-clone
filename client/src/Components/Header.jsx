@@ -73,6 +73,11 @@ function Header() {
             <ListItemText primary={"Top Box Office"} inset={true} />
           </ListItemButton>
         </Link>
+        <Link href="/top10movies" color="inherit" underline="none">
+          <ListItemButton>
+            <ListItemText primary={"Top 10 Movies"} inset={true} />
+          </ListItemButton>
+        </Link>
         <Divider />
         <ListItem>
           <ListItemIcon>
